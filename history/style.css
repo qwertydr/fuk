@@ -1,0 +1,232 @@
+body {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* Show the "Not Allowed" cursor */
+.disabled {
+	cursor: not-allowed;
+}
+
+
+/* All Content */
+#content {
+	width: 100%;
+	height: var(--body-height);
+}
+.content-row {
+	vertical-align: top;
+}
+
+
+/* Main toolbar */
+#main-toolbar {
+	width: 690px;
+}
+
+
+/* Tab toolbars */
+.tab-toolbar button:first-child {
+	margin-left: 11px;
+}
+.tab-toolbar button {
+	display: inline-block;
+	margin: 0 4px;
+
+	min-width: 44px;
+	height: 34px;
+
+	background: var(--background-dark);
+	border-radius: 2px;
+
+	box-shadow: 1px 1px 3px rgb(20, 20, 20);
+	border: none;
+}
+.tab-toolbar button > img {
+	filter: invert(0.4);
+}
+
+
+/* Tab selection type */
+#selection-type {
+	float: right;
+	margin-right: 17px;
+}
+
+
+/* Left Menu */
+#left-menu {
+	position: relative;
+	
+	width: 20%;
+	margin: 6px 12px;
+	padding: 2px 5px;
+	
+}
+#left-menu a {
+	font-size: 11px;
+	text-decoration: none;
+	color: #FFFF;
+}
+#left-menu a:hover {
+	font-size: 16px;
+
+}
+
+/* Containers from the active tab */
+#tab-containers {
+	margin-top: 20px;
+	margin-left: 10%;
+
+	width: 80%;
+	min-height: 100px;
+
+	background: #047d40;
+	border-radius: 4px;
+	box-shadow: 2px 2px 4px rgb(26, 27, 30);
+}
+
+#tab-containers span {
+	display: inline-block;
+
+	margin: 6px 12px;
+
+	color: #047d40;
+	font-size: 16px;
+	font-family: system-ui;
+}
+
+
+/* Citation drag element */
+.drag-helper {
+	position: fixed;
+
+	height: 45px;
+
+	background: var(--content-background-dark);
+	box-shadow: 1px 1px 4px rgb(6, 8, 9);
+
+	border-radius: 3px;
+
+	pointer-events: all;
+	cursor: grabbing;
+}
+
+.drag-helper h2 {
+	display: inline-block;
+
+	margin: 0;
+	padding: 10px 0 0 12px;
+
+	color: var(--text-primary-dark);
+}
+
+.drag-helper img {
+	display: inline-block;
+	vertical-align: top;
+
+	margin: 0;
+	padding: 10px 4px;
+
+	height: 24px;
+
+	filter: invert(0.4);
+}
+
+
+/* Right Menu */
+#right-menu {
+	width: 80px;
+}
+
+#social-links {
+	position: absolute;
+
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+
+	width: 50px;
+}
+#social-links a {
+	display: block;
+
+	margin-bottom: 50%;
+
+	width: 50px;
+	height: 50px;
+}
+#social-links a:last-child {
+	margin-bottom: 0;
+}
+#social-links a img {
+	width: 100%;
+}
+#social-links a:hover {
+	filter: drop-shadow(2px 2px 1px rgb(20, 20, 20));
+
+	cursor: pointer;
+}
+
+
+/* Search Bar */
+#searchbar {
+	float: left;
+
+	margin: 8px 10px 0 10px;
+	padding: 2px 5px;
+
+	width: 650px;
+	height: 25px;
+
+	font-size: 14px;
+	font-family: system-ui;
+
+	border-radius: 3px;
+	border: 2px solid white;
+}
+
+/* Refresh citation list */
+#filter-search {
+	position: relative;
+
+	float: left;
+	margin-top: 8px;
+
+	padding: 0;
+
+	width: 40px;
+	height: 32px;
+
+	background: var(--content-background-dark);
+	box-shadow: 1px 1px 3px rgb(10, 12, 12);
+	border-radius: 2px;
+
+	cursor: pointer;
+}
+
+#filter-search img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+
+	transform: translate(-50%, -50%);
+
+	filter: invert(0.4);
+}
+
+
+/* Dropdown Menus */
+.dropdown-container:focus-within .dropdown {
+	opacity: 1;
+}
+
+.dropdown {
+	position: absolute;
+
+	opacity: 0;
+	transition: opacity 250ms;
+
+	z-index: 2;
+}

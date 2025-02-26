@@ -1,0 +1,31 @@
+{
+	"name": "YRJCite - Citation Maker",
+	"description": "YRJCite - Create citations from any website. YRJ is a journal where anyone can publish paper. Developed by Sanaul Haque.",
+	"version": "0.0.1",
+
+	"icons": {
+		"16": "icons/icon16.png",
+          "32": "icons/icon32.png",
+          "48": "icons/icon48.png",
+          "64": "icons/icon64.png",
+          "128": "icons/icon128.png"
+	},
+
+	"browser_action": {
+		"default_title": "YRJCite",
+		"default_popup": "browser/index.html"
+	},
+
+	"web_accessible_resources": [
+		"inject/*.*"
+	],
+
+	"permissions": [
+		"activeTab",
+		"storage",
+		"downloads"
+	],
+
+	"minimum_chrome_version": "39",
+	"manifest_version": 2
+}

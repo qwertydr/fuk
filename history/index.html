@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>YRJCite | Citation History</title>
+
+		<link rel="stylesheet" href="../general/general.css">
+
+		<link rel="stylesheet" href="citation.css">
+		<link rel="stylesheet" href="tab.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<!-- Header -->
+		<header>
+			<h1>YRJCite - Citation History</h1>
+		</header>
+
+
+		<!-- Page Content -->
+		<table id="content">
+			<tr class="content-row" height="50px">
+				<!-- Extra Margin -->
+				<td></td>
+
+				<!-- Search Bar -->
+				<td>
+					<input id="searchbar" type="text" placeholder="Search">
+
+					<!-- Search filtering -->
+					<div id="filter-search">
+						<img src="svg/filter_search.svg">
+					</div>
+				</td>
+			</tr>
+			<tr class="content-row" height="40px">
+				<!-- Extra Margin -->
+				<td></td>
+
+				<!-- Main toolbar -->
+				<td>
+					<div id="main-toolbar" class="tab-toolbar">
+
+						<!-- Select all citations in the current tab -->
+						<button id="select-all" title="Select All">
+							<img src="svg/checkbox_blank.svg">
+						</button>
+
+						<!-- Copy selected citations -->
+						<button id="copy-selected" title="Copy Selected">
+							<img src="svg/copy.svg">
+						</button>
+
+						<!-- Delete selected citations -->
+						<button id="delete-selected" title="Delete Selected">
+							<img src="svg/delete.svg">
+						</button>
+
+						<!-- Export selected citations -->
+						<button id="export-selected" title="Export Selected">
+							<img src="svg/export.svg">
+						</button>
+
+						<!-- Single / all tab selection -->
+						<button id="selection-type">
+							<img src="svg/tabs_active.svg">
+						</button>
+
+					</div>
+				</td>
+
+				<!-- Extra margin -->
+				<td></td>
+			</tr>
+			<tr class="content-row">
+				<!-- Left Menu & tab containers -->
+				<td id="left-menu">
+					<div id="tab-containers" style="background: var(--background-dark);">
+						<span>About Us</span>
+						<div style="padding: 7px 7px;">
+						<p style="color: #d1d6eb;">YRJCite is a <a href="https://yrjournal.org">Youth Research Journal</a> in-house build citation generator.</p>
+						<p style="color: #d1d6eb;">YRJ releases significant research papers each year. Hosting the <a href="https://yrjournal.org/program">Graduate and High School Research programs</a> is YRJ's main initiative. Visit to learn more!</p>
+
+						<p style="color: #d1d6eb;">To encourage newcomers to do research and foster their intellectual development, YRJ organizes an <a href="https://iarco.org">International Academic Research Competition</a> each year for high school and university to any age group in any discipline.</p><br>
+						<p style="color: #d1d6eb;">Developed by <a href="https://md-sanaul-haque-shanto.github.io/">Sanaul Haque</a>, President of Youth Research Journal.</p>
+						<p style="color: #d1d6eb; font-size: 8px;">Alpha Version 0.0.1</p>
+						<p style="color: #d1d6eb; font-size: 7px;">Any Suggestion at shanto@yrjournal.org</p>
+
+						</div>
+
+						<!-- Containers are dynamically loaded -->
+						<div id="tab-container-list"></div>
+					</div>
+				</td>
+
+
+				<!-- Citation List -->
+				<td id="citation-tabs">
+					<!-- Citations are dynamically loaded -->
+
+					<!-- Shown if no citations exist -->
+					<div id="citations-empty">
+						<p>No citations found</p>
+					</div>
+
+					<!-- Headers for citation tabs -->
+					<div id="tab-headers">
+
+						<!-- Import citations into a new tab -->
+						<div id="import-tab">
+							<img src="svg/tabs_new.svg">
+						</div>
+
+					</div>
+
+					<!-- Hidden import area -->
+					<input id="import-area" type="file" accept=".chf">
+				</td>
+
+
+				<!-- Right Menu -->
+				<td id="right-menu">
+
+					<!-- Social Media -->
+					<div id="social-links">
+						<a href="https://yrjournal.org" target="_blank" rel="noreferrer">
+							<img src="images/logo.png">
+						</a>
+						<a href="https://iarco.org" target="_blank" rel="noreferrer">
+							<img src="images/iarco_logo.png">
+						</a>
+						<a href="https://pinneducation.org" target="_blank" rel="noreferrer">
+							<img src="images/pinn_logo.png">
+						</a>
+					</div>
+
+				</td>
+			</tr>
+		</table>
+
+
+		<!-- Scripts -->
+		<script src="../general/storage.js"></script>
+		<script src="../general/history.js"></script>
+		<script src="../general/format.js"></script>
+		<script src="../general/contextmenu.js"></script>
+
+		<script src="options.js"></script>
+		<script src="drag.js"></script>
+		
+		<script src="tab.js"></script>
+		<script src="manage.js"></script>
+		<script src="toolbar.js"></script>
+		<script src="main.js"></script>
+
+		<script src="load.js"></script>
+	</body>
+</html>

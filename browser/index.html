@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Main stylesheets -->
+		<link rel="stylesheet" href="../general/general.css">
+		<link rel="stylesheet" href="style.css">
+
+		<!-- Page-specific stylesheets -->
+		<link rel="stylesheet" href="home.css">
+		<link rel="stylesheet" href="yrj.css">
+		<link rel="stylesheet" href="create.css">
+	</head>
+	<body>
+		<!-- Header -->
+		<header>
+			<h1 id="title">YRJCite</h1>
+			<button id="back" class="redirect-home hidden">Back</button>
+		</header>
+
+
+		<!-- Home page -->
+		<div class="page page-home">
+			<div class="tab redirect-create">
+				<h2>New Citation</h2>
+				<p>Create a new citation on the current page</p>
+			</div>
+			<div class="tab redirect-history">
+				<h2>History</h2>
+				<p>View your citation history</p>
+			</div>
+			<div class="tab redirect-yrj">
+				<h2>Youth Research Journal</h2>
+				<p>Publication, Research Programs, Competition, Admission Expert...</p>
+			</div>
+		</div>
+
+
+		<!-- Create a citation -->
+		<div class="page page-create hidden">
+			<input class="format-search" placeholder="Search">
+			<div id="format-list"></div>
+		</div>
+
+
+		<!-- Citation Stats -->
+		<div class="page page-yrj hidden">
+			<div class="tab">
+				<a href="https://yrjournal.org" target="_blank" style=" color: #FFFFFF; text-decoration: none;"><h2>Youth Research Journal</h2>
+				<p>High School and Graduate Research Programs, Publication..</p></a>
+			</div>
+			<div class="tab">
+				<a href="https://iarco.org" target="_blank" style=" color: #FFFFFF; text-decoration: none;"><h2>International Academic Research Competition</h2>
+				<p>University, High School, any age/major competition once in a year..</p></a>
+			</div>
+			<div class="tab">
+				<a href="https://pinneducation.org" target="_blank" style=" color: #FFFFFF; text-decoration: none;"><h2>Pinn Education</h2>
+				<p>USA/Canada College Admission Experts, Virtual Internship..</p></a>
+			</div>
+		</div>
+
+
+		<!-- Scripts -->
+		<script src="../general/storage.js"></script>
+		<script src="../general/format.js"></script>
+		<script src="../general/history.js"></script>
+		<script src="main.js"></script>
+
+		<script src="home.js"></script>
+		<script src="yrj.js"></script>
+		<script src="create.js"></script>
+
+		<script src="load.js"></script>
+	</body>
+</html>
