@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Flashcard Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-generate {
+            background: #27ae60;
+        }
+        
+        .btn-generate:hover {
+            background: #219653;
+        }
+        
+        .preview {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .flashcard-header {
+            background: #e74c3c;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-subtitle {
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .flashcard-body {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .question {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.4;
+            color: #2c3e50;
+            padding: 0 10px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .option {
+            background: #f8f9fa;
+            border: 3px solid #e74c3c;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+            transition: all 0.2s;
+            color: #2c3e50;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+        
+        .option:hover {
+            border-color: #c0392b;
+            background: #ffece9;
+            transform: scale(1.02);
+        }
+        
+        .flashcard-footer {
+            background: #2c3e50;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .controls, .preview {
+                max-width: 100%;
+            }
+            
+            .flashcard {
+                max-width: 400px;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .option {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Premium Flashcard Generator</h1>
+        
+        <div class="app-container">
+            <div class="controls">
+                <button class="btn btn-generate" id="generateBtn">
+                    Generate Random Question
+                </button>
+                <button class="btn" id="downloadBtn">
+                    Download as PNG
+                </button>
+            </div>
+            
+            <div class="preview">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-header" id="header">
+                        <div class="logo-container">
+                            <div class="logo">BRAINY</div>
+                            <div class="logo-subtitle" id="logoSubtitle">Per Hour Question</div>
+                        </div>
+                    </div>
+                    <div class="flashcard-body">
+                        <div class="question" id="question">Which data structure uses LIFO (Last In First Out) principle?</div>
+                        <div class="options" id="options">
+                            <div class="option">A) Queue</div>
+                            <div class="option">B) Stack</div>
+                            <div class="option">C) Array</div>
+                            <div class="option">D) Linked List</div>
+                        </div>
+                    </div>
+                    <div class="flashcard-footer">
+                        <div class="date" id="date">August 22, 2023</div>
+                        <div class="social-links">
+                            <a href="#">quizgenius.com</a>
+                            <a href="#">@quizgenius</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample MCQ data
+        const mcqData = [
+            {
+                question: "Which data structure uses LIFO (Last In First Out) principle?",
+                options: ["Queue", "Stack", "Array", "Linked List"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the time complexity of binary search in a sorted array of n elements?",
+                options: ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of these is not a programming paradigm?",
+                options: ["Object-oriented programming", "Functional programming", "Procedural programming", "Symmetric programming"],
+                correctAnswer: 3
+            },
+            {
+                question: "Which language is known as the backbone of web development?",
+                options: ["Python", "JavaScript", "Java", "C++"],
+                correctAnswer: 1
+            },
+            {
+                question: "What does API stand for in programming?",
+                options: ["Application Programming Interface", "Advanced Programming Instruction", "Application Process Integration", "Automated Programming Interface"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which of these is not a JavaScript framework or library?",
+                options: ["React", "Angular", "Django", "Vue"],
+                correctAnswer: 2
+            },
+            {
+                question: "What is the default port for HTTP websites?",
+                options: ["80", "443", "8080", "8000"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which protocol is used for secure communication over the web?",
+                options: ["HTTP", "HTTPS", "FTP", "SMTP"],
+                correctAnswer: 1
+            },
+            {
+                question: "What does SQL stand for in database management?",
+                options: ["Structured Query Language", "Simple Question Language", "Standard Query Logic", "System Query Layer"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which data type is used to store true/false values in JavaScript?",
+                options: ["String", "Number", "Boolean", "Array"],
+                correctAnswer: 2
+            }
+        ];
+
+        // Color combinations for logo subtitle
+        const colorCombinations = [
+            { background: "#FF9EAA", text: "#8A0F0F" },
+            { background: "#B5FE83", text: "#0B6B26" },
+            { background: "#8DE4FF", text: "#0A3B5C" },
+            { background: "#FFB144", text: "#7D3A00" },
+            { background: "#D9B8FF", text: "#3D2366" }
+        ];
+
+        // DOM elements
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const dateElement = document.getElementById('date');
+        const logoSubtitle = document.getElementById('logoSubtitle');
+        const headerElement = document.getElementById('header');
+
+        // Set current date
+        const today = new Date();
+        dateElement.textContent = today.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+
+        // Generate a random flashcard
+        function generateRandomFlashcard() {
+            const randomIndex = Math.floor(Math.random() * mcqData.length);
+            const questionData = mcqData[randomIndex];
+            
+            questionElement.textContent = questionData.question;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add new options
+            const optionLetters = ['A', 'B', 'C', 'D'];
+            questionData.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = `${optionLetters[index]}) ${option}`;
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // Apply random color to logo subtitle
+            applyRandomColor();
+        }
+
+        // Apply random color combination
+        function applyRandomColor() {
+            const randomColor = colorCombinations[Math.floor(Math.random() * colorCombinations.length)];
+            logoSubtitle.style.background = randomColor.background;
+            logoSubtitle.style.color = randomColor.text;
+            
+            // Also update header with a gradient that includes the random color
+            headerElement.style.background = `linear-gradient(to right, #e74c3c, ${randomColor.background})`;
+        }
+
+        // Download as PNG using pure JavaScript
+        function downloadAsPNG() {
+            // Create a canvas element
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            
+            // Set fixed dimensions for the flashcard (square aspect ratio)
+            const size = 600; // Fixed size for consistent output
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Draw background
+            context.fillStyle = '#ffffff';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw header with gradient
+            const headerHeight = size * 0.3;
+            const headerGradient = context.createLinearGradient(0, 0, canvas.width, 0);
+            headerGradient.addColorStop(0, '#e74c3c');
+            headerGradient.addColorStop(1, '#fdbb2d');
+            context.fillStyle = headerGradient;
+            context.fillRect(0, 0, canvas.width, headerHeight);
+            
+            // Draw logo
+            context.fillStyle = '#ffffff';
+            context.font = 'bold 45px Poppins';
+            context.textAlign = 'center';
+            context.fillText('BRAINY', canvas.width/2, headerHeight/2 - 15);
+            
+            // Draw logo subtitle with random color
+            context.font = 'bold 22px Poppins';
+            const subtitle = 'Per Hour Question';
+            const subtitleWidth = context.measureText(subtitle).width;
+            
+            const randomColor = colorCombinations[Math.floor(Math.random() * colorCombinations.length)];
+            context.fillStyle = randomColor.background;
+            context.fillRect(canvas.width/2 - subtitleWidth/2 - 15, headerHeight/2 + 15, subtitleWidth + 30, 40);
+            
+            context.fillStyle = randomColor.text;
+            context.fillText(subtitle, canvas.width/2, headerHeight/2 + 45);
+            
+            // Draw question
+            context.fillStyle = '#2c3e50';
+            context.font = 'bold 36px Poppins';
+            
+            // Wrap text if too long
+            const question = questionElement.textContent;
+            const maxWidth = canvas.width - 60;
+            let lines = [];
+            let currentLine = '';
+            
+            question.split(' ').forEach(word => {
+                const testLine = currentLine + word + ' ';
+                const metrics = context.measureText(testLine);
+                if (metrics.width > maxWidth && currentLine !== '') {
+                    lines.push(currentLine);
+                    currentLine = word + ' ';
+                } else {
+                    currentLine = testLine;
+                }
+            });
+            lines.push(currentLine);
+            
+            // Draw question lines
+            const questionTop = headerHeight + 50;
+            lines.forEach((line, index) => {
+                context.fillText(line, canvas.width/2, questionTop + index * 40);
+            });
+            
+            // Draw options
+            context.font = 'bold 26px Poppins';
+            const options = optionsElement.querySelectorAll('.option');
+            const optionTop = questionTop + lines.length * 40 + 30;
+            const optionHeight = 70;
+            const optionWidth = 250;
+            const optionMargin = 30;
+            
+            options.forEach((option, index) => {
+                const row = Math.floor(index / 2);
+                const col = index % 2;
+                
+                const x = col === 0 ? canvas.width/2 - optionWidth - optionMargin/2 : canvas.width/2 + optionMargin/2;
+                const y = optionTop + row * (optionHeight + optionMargin);
+                
+                // Draw option box
+                context.strokeStyle = '#e74c3c';
+                context.lineWidth = 3;
+                context.strokeRect(x, y, optionWidth, optionHeight);
+                
+                // Draw option text
+                context.fillStyle = '#2c3e50';
+                context.fillText(option.textContent, x + optionWidth/2, y + optionHeight/2 + 10);
+            });
+            
+            // Draw footer
+            const footerTop = optionTop + 2 * (optionHeight + optionMargin);
+            context.fillStyle = '#2c3e50';
+            context.fillRect(0, footerTop, canvas.width, size - footerTop);
+            
+            // Draw footer text
+            context.fillStyle = '#ffffff';
+            context.font = '18px Poppins';
+            context.fillText(today.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }), 30, footerTop + 40);
+            
+            context.fillText('quizgenius.com | @quizgenius', canvas.width - 280, footerTop + 40);
+            
+            // Create download link
+            const link = document.createElement('a');
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            link.download = `flashcard-${timestamp}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Event listeners
+        generateBtn.addEventListener('click', generateRandomFlashcard);
+        downloadBtn.addEventListener('click', downloadAsPNG);
+
+        // Initialize with a random flashcard and color
+        generateRandomFlashcard();
+    </script>
+</body>
+</html>
